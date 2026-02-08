@@ -438,15 +438,19 @@ st.markdown("""
 
 /* 免责声明条 */
 .disclaimer-bar {
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin: 16px 0;
-    font-size: 0.7em;
-    color: #9ca3af;
+    background: #f8fafc;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #6b7280;
     text-align: center;
-    line-height: 1.7;
+    line-height: 1.6;
+
+    white-space: normal;
+    word-break: break-word;
 }
+
 
 /* 锁定屏幕 */
 .lock-screen {
@@ -600,21 +604,27 @@ st.markdown("""
 
 /* TradingView */
 .tv-container {
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 16px 0;
-    border: 1px solid #e5e7eb;
+    width: 100%;
+    min-height: 420px;
+    margin-bottom: 8px;
 }
 
+
 .tv-disclaimer {
-    font-size: 0.58em;
-    color: #9ca3af;
-    text-align: center;
-    padding: 10px;
-    background: #f9fafb;
-    margin-top: 8px;
-    line-height: 1.5;
+    font-size: 10px;
+    color: #64748B;
+    line-height: 1.6;
+    margin-top: 10px;
+    padding: 8px 10px;
+
+    /* 关键：避免被裁剪 */
+    white-space: normal;
+    word-break: break-word;
+
+    /* 如果被父容器裁掉 */
+    overflow: visible;
 }
+
 
 /* 卡片样式 */
 .info-card {
@@ -750,7 +760,7 @@ button[id^="trigger_"] {
     visibility: hidden !important;
     position: absolute !important;
     width: 1px !important;
-    height: 1px !important;
+    height:  auto;
     padding: 0 !important;
     margin: -1px !important;
     overflow: hidden !important;
@@ -1144,12 +1154,14 @@ def render_tradingview_chart(symbol: str, height: int = 400):
     }});
     </script>
     <div class="tv-disclaimer">
-        <strong>行情图表由第三方提供，仅作为市场数据可视化参考。</strong><br>
+        行情图表由第三方提供，仅作为市场数据可视化参考。<br>
         EigenFlow 不提供任何买卖建议或价格判断。<br>
-        TradingView® 为 TradingView, Inc. 的注册商标。本平台与 TradingView, Inc. 无合作、授权或隶属关系。
+        TradingView® 为 TradingView, Inc. 的注册商标。<br>
+        本平台与 TradingView, Inc. 无合作、授权或隶属关系。<br>
     </div>
+
     """
-    components.html(tv_html, height=height + 70)
+    components.html(tv_html, height=height + 130)
 
 
 def render_trial_chart():
@@ -1219,7 +1231,7 @@ def render_support_page():
         <div class="info-card-text">
             <ul style="margin:8px 0; padding-left:16px;">
                 <li>微信：扫描下方二维码联系</li>
-                <li>Email：research@eigenflow.io</li>
+                <li>Email：research.eigenflow@gmail.com</li>
             </ul>
         </div>
     </div>
@@ -1229,25 +1241,16 @@ def render_support_page():
     col_qr1, col_qr2 = st.columns(2)
 
     with col_qr1:
-        st.markdown('<div class="qr-area">', unsafe_allow_html=True)
-        st.markdown("**💬 微信**")
-        try:
-            st.image("wechat_qr.png", width=140)
-        except:
-            st.info("添加 wechat_qr.png")
-        st.markdown('<div class="qr-label">扫码联系</div>', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
+
+        st.markdown("### 💬 微信咨询")
+        st.image("wechat_qr.png", width=180)
+        st.caption("扫码咨询详情")
 
     with col_qr2:
-        st.markdown('<div class="qr-area">', unsafe_allow_html=True)
-        st.markdown("**💳 支付宝**")
-        try:
-            st.image("alipay_qr.png", width=140)
-        except:
-            st.info("添加 alipay_qr.png")
-        st.markdown('<div class="qr-label">扫码支付</div>', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
-
+        st.markdown("### 💳 支付宝付款")
+        st.image("alipay_qr.png", width=180)
+        st.caption("付款备注：邮箱或微信号")
+        st.caption("付款后联系开通，获取Access Key解锁模型输出")
     st.markdown("---")
     
     # ========== 法务与语言威慑 ==========
@@ -1611,7 +1614,8 @@ def main():
             ">
                 <div style="font-size: 48px; margin-bottom: 12px;">🔒</div>
                 <h3 style="color: #b91c1c; margin-bottom: 8px;">行情视图需解锁后查看</h3>
-                <p style="color: #dc2626;">请先获取 Access Key</p>
+                <h3 style="color: #b91c1c; margin-bottom: 8px;">详情请点击“支持订阅”界面</h3>
+                <h4 style="color: #F59E0B;">请先获取 Access Key</h4>
             </div>
             ''', unsafe_allow_html=True)
             
