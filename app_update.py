@@ -611,7 +611,7 @@ st.markdown("""
 
 
 .tv-disclaimer {
-    font-size: 10px;
+    font-size: 8px;
     color: #64748B;
     line-height: 1.6;
     margin-top: 10px;
@@ -811,19 +811,22 @@ def render_brand_header():
     """, unsafe_allow_html=True)
     
     # ===== 合规横幅 =====
+    ##         EigenFlow 为量化研究展示平台，内容仅用于市场行为研究与数据观察，
+    ##    不构成证券投资建议或任何交易指令。
     st.markdown('''
     <div class="compliance-banner">
-        EigenFlow 为量化研究展示平台，内容仅用于市场行为研究与数据观察，
-        不构成证券投资建议或任何交易指令。
+        EigenFlow 是一个基于量化模型的市场研究与数据分析平台，致力于提供系统化的风险状态和市场信号参考，帮助用户理解市场结构与风险变化。
+        本平台内容仅用于研究与信息参考，不构成任何投资建议或个股推荐。
     </div>
     ''', unsafe_allow_html=True)
 
 
 def render_disclaimer():
-    """渲染精简免责声明"""
+    """渲染精简免责声明"""          # 本平台仅供学术研究，不构成投资建议，不诱导交易行为
     st.markdown("""
     <div class="disclaimer-bar">
-        本平台仅供学术研究，不构成投资建议，不诱导交易行为
+        EigenFlow 平台内容仅用于量化研究与市场信息参考，不构成任何投资建议或买卖依据。</br>
+        金融市场存在风险，历史表现不代表未来结果，用户据此决策风险自担。
     </div>
     """, unsafe_allow_html=True)
 
@@ -1153,16 +1156,23 @@ def render_tradingview_chart(symbol: str, height: int = 400):
         "container_id": "tradingview_widget"
     }});
     </script>
+
+    
     <div class="tv-disclaimer">
-        行情图表由第三方提供，仅作为市场数据可视化参考。<br>
-        EigenFlow 不提供任何买卖建议或价格判断。<br>
-        TradingView® 为 TradingView, Inc. 的注册商标。<br>
-        本平台与 TradingView, Inc. 无合作、授权或隶属关系。<br>
+        本页面行情图表由第三方数据服务提供，仅用于市场数据展示与可视化分析参考。<br>
+        图表内容不构成任何买卖建议、价格预测或投资判断。<br>
+        部分图表服务可能受网络环境或地区访问影响，如加载异常，请更换网络环境后重试。<br>
+        TradingView 为 TradingView, Inc. 的注册商标。本平台与 TradingView, Inc. 不存在合作、授权或隶属关系。<br>
     </div>
 
     """
     components.html(tv_html, height=height + 130)
 
+
+# 行情图表由第三方提供，仅作为市场数据可视化参考。<br>
+#  EigenFlow 不提供任何买卖建议或价格判断。<br>
+#  TradingView® 为 TradingView, Inc. 的注册商标。<br>
+#  本平台与 TradingView, Inc. 无合作、授权或隶属关系。<br>
 
 def render_trial_chart():
     """渲染试用版图表"""
@@ -1368,10 +1378,12 @@ def page_signal_list(key_mask: str):
     <div class="footer-legal">
         <div class="footer-title">使用声明</div>
         <div class="footer-content">
-            本页面展示内容为量化模型计算结果，仅供研究参考，不作为任何投资决策依据。<br>
+            本本平台展示的市场状态或模型结果来源于历史数据与统计方法，不代表未来市场走势，仅供研究参考，不作为任何投资决策依据。<br>
+            模型结果可能存在失效风险、参数偏差或市场环境变化带来的不确定性，用户应基于自身风险承受能力独立决策并自行承担投资风险。<br>
             本平台内容仅供个人研究与学习使用，禁止二次传播、转售或公开发布。<br>
             严禁任何形式的商业化使用或二次收费。<br>
             如发现违规行为，平台有权终止访问授权并保留追责权利。
+            
         </div>
     </div>
     """, unsafe_allow_html=True)
