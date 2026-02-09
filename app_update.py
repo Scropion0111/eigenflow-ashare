@@ -1383,8 +1383,6 @@ def page_signal_list(key_mask: str):
             本平台内容仅供个人研究与学习使用，禁止二次传播、转售或公开发布。<br>
             严禁任何形式的商业化使用或二次收费。<br>
             如发现违规行为，平台有权终止访问授权并保留追责权利。
-            
-        </div>
     </div>
     """, unsafe_allow_html=True)
 
