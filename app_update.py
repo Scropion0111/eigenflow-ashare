@@ -1337,7 +1337,7 @@ def page_signal_list(key_mask: str):
 
     df_top10 = df.head(10).copy()
     df_top10['symbol'] = df_top10['symbol'].apply(format_stock_code)
-    stock_names = df_top10.get('name', df_top10['symbol']).tolist()
+    stock_names = df_top10.get('name', df_top10['name']).tolist()
 
     # 日期标签
     now = datetime.now()
